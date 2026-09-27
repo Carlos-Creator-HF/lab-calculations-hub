@@ -103,6 +103,11 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var key="lab-module-recovery";function recover(event){var message=event&&event.message?String(event.message):"";if(event&&event.type==="vite:preloadError"){event.preventDefault();}else if(!/Importing a module script failed|Failed to fetch dynamically imported module|error loading dynamically imported module/i.test(message)){return;}if(sessionStorage.getItem(key)){return;}sessionStorage.setItem(key,"1");var url=new URL(location.href);url.searchParams.set("refresh",Date.now().toString());location.replace(url.toString());}window.addEventListener("vite:preloadError",recover);window.addEventListener("error",recover);window.addEventListener("load",function(){setTimeout(function(){sessionStorage.removeItem(key);},5000);});})();`,
+          }}
+        />
       </head>
       <body>
         {children}
