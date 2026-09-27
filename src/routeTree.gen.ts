@@ -15,6 +15,7 @@ import { Route as CalcIdRouteImport } from './routes/calc.$id'
 import { Route as HorariosIndexRouteImport } from './routes/horarios.index'
 import { Route as HorariosClasesRouteImport } from './routes/horarios.clases'
 import { Route as HorariosEquiposRouteImport } from './routes/horarios.equipos'
+import { Route as HorariosEquipoIdRouteImport } from './routes/horarios.equipo.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const HorariosEquiposRoute = HorariosEquiposRouteImport.update({
   path: '/horarios/equipos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HorariosEquipoIdRoute = HorariosEquipoIdRouteImport.update({
+  id: '/horarios/equipo/$id',
+  path: '/horarios/equipo/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/horarios/clases': typeof HorariosClasesRoute
   '/horarios/equipos': typeof HorariosEquiposRoute
   '/horarios/': typeof HorariosIndexRoute
+  '/horarios/equipo/$id': typeof HorariosEquipoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/horarios/clases': typeof HorariosClasesRoute
   '/horarios/equipos': typeof HorariosEquiposRoute
   '/horarios': typeof HorariosIndexRoute
+  '/horarios/equipo/$id': typeof HorariosEquipoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/horarios/clases': typeof HorariosClasesRoute
   '/horarios/equipos': typeof HorariosEquiposRoute
   '/horarios/': typeof HorariosIndexRoute
+  '/horarios/equipo/$id': typeof HorariosEquipoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/horarios/clases'
     | '/horarios/equipos'
     | '/horarios/'
+    | '/horarios/equipo/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/horarios/clases'
     | '/horarios/equipos'
     | '/horarios'
+    | '/horarios/equipo/$id'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/horarios/clases'
     | '/horarios/equipos'
     | '/horarios/'
+    | '/horarios/equipo/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   HorariosClasesRoute: typeof HorariosClasesRoute
   HorariosEquiposRoute: typeof HorariosEquiposRoute
   HorariosIndexRoute: typeof HorariosIndexRoute
+  HorariosEquipoIdRoute: typeof HorariosEquipoIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HorariosEquiposRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/horarios/equipo/$id': {
+      id: '/horarios/equipo/$id'
+      path: '/horarios/equipo/$id'
+      fullPath: '/horarios/equipo/$id'
+      preLoaderRoute: typeof HorariosEquipoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   HorariosClasesRoute: HorariosClasesRoute,
   HorariosEquiposRoute: HorariosEquiposRoute,
   HorariosIndexRoute: HorariosIndexRoute,
+  HorariosEquipoIdRoute: HorariosEquipoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
