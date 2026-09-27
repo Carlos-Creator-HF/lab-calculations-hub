@@ -19,6 +19,10 @@
  */
 
 @theme inline {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --color-pastel: var(--pastel);
+  --color-pastel-foreground: var(--pastel-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -62,15 +66,19 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.75rem;
+  --pastel: oklch(0.88 0.07 330);
+  --pastel-foreground: oklch(0.35 0.12 320);
+  --gradient-page: linear-gradient(180deg, oklch(0.78 0.14 150) 0%, oklch(0.9 0.07 190) 55%, oklch(0.92 0.06 225) 100%);
+  --gradient-title: linear-gradient(135deg, oklch(0.9 0.07 350), oklch(0.86 0.08 305));
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.45 0.11 165);
+  --primary-foreground: oklch(0.98 0.01 165);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -142,3 +150,17 @@
     color: var(--color-foreground);
   }
 }
+
+body { background: var(--gradient-page); background-attachment: fixed; min-height: 100vh; font-family: var(--font-sans); }
+h1,h2,h3 { font-family: var(--font-display); }
+@utility title-box { background: var(--gradient-title); color: var(--pastel-foreground); border-radius: 1.5rem; box-shadow: 0 10px 30px -10px oklch(0.5 0.12 320 / 0.5); }
+@utility btn-3d {
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  background: linear-gradient(180deg, oklch(0.99 0.01 180), oklch(0.9 0.04 180));
+  color: var(--primary); font-weight:600; border-radius: 1rem;
+  box-shadow: 0 6px 0 oklch(0.55 0.09 170), 0 12px 20px -6px oklch(0.3 0.08 170 / 0.45);
+  transition: transform .1s, box-shadow .1s;
+  &:hover { transform: translateY(-2px); }
+  &:active { transform: translateY(4px); box-shadow: 0 2px 0 oklch(0.55 0.09 170), 0 4px 8px -4px oklch(0.3 0.08 170 / 0.45); }
+}
+@utility panel { background: oklch(1 0 0 / 0.8); border-radius: 1rem; backdrop-filter: blur(6px); box-shadow: 0 8px 24px -12px oklch(0.3 0.05 200 / 0.4); }
