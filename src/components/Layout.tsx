@@ -7,9 +7,17 @@ export function Footer() {
       <p className="max-w-xl">
         This project was founded by PAPIT-UNAM, PAPIME-UNAM and SECIHTI. We thank DGAPA for postdoctoral fellowship.
       </p>
-      <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noreferrer">
-        <img src="https://licensebuttons.net/l/by-nc/4.0/88x31.png" alt="CC BY-NC 4.0" width={88} height={31} />
-      </a>
+      <p className="max-w-xl">
+        This work is licensed under{" "}
+        <a
+          href="https://creativecommons.org/licenses/by-nc/4.0/"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block rounded-full border border-foreground/30 px-3 py-0.5 font-medium text-foreground transition-colors hover:border-foreground/60 hover:bg-foreground/5"
+        >
+          CC BY-NC 4.0
+        </a>
+      </p>
     </footer>
   );
 }
