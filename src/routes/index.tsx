@@ -1,24 +1,29 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Footer } from "@/components/Layout";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Lab — Horarios y Cálculos" },
+      { name: "description", content: "Laboratorio: horarios de clases y equipos, y cálculos de curvas de calibración." },
+      { property: "og:title", content: "Lab — Horarios y Cálculos" },
+      { property: "og:description", content: "Horarios de laboratorio y curvas de calibración con ajuste lineal." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="flex min-h-screen flex-col">
+      <main className="flex flex-1 flex-col items-center justify-center gap-10 px-4 pt-10">
+        <h1 className="title-box px-16 py-8 text-6xl font-bold md:text-7xl">Lab</h1>
+        <div className="flex w-full max-w-md flex-col gap-6 sm:flex-row">
+          <Link to="/horarios" className="btn-3d flex-1 py-6 text-2xl">Horarios</Link>
+          <Link to="/calculos" className="btn-3d flex-1 py-6 text-2xl">Cálculos</Link>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
