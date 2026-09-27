@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CalculosRouteImport } from './routes/calculos'
+import { Route as CalcIdRouteImport } from './routes/calc.$id'
+import { Route as HorariosIndexRouteImport } from './routes/horarios.index'
+import { Route as HorariosClasesRouteImport } from './routes/horarios.clases'
+import { Route as HorariosEquiposRouteImport } from './routes/horarios.equipos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculosRoute = CalculosRouteImport.update({
+  id: '/calculos',
+  path: '/calculos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalcIdRoute = CalcIdRouteImport.update({
+  id: '/calc/$id',
+  path: '/calc/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HorariosIndexRoute = HorariosIndexRouteImport.update({
+  id: '/horarios/',
+  path: '/horarios/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HorariosClasesRoute = HorariosClasesRouteImport.update({
+  id: '/horarios/clases',
+  path: '/horarios/clases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HorariosEquiposRoute = HorariosEquiposRouteImport.update({
+  id: '/horarios/equipos',
+  path: '/horarios/equipos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calculos': typeof CalculosRoute
+  '/calc/$id': typeof CalcIdRoute
+  '/horarios/clases': typeof HorariosClasesRoute
+  '/horarios/equipos': typeof HorariosEquiposRoute
+  '/horarios/': typeof HorariosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calculos': typeof CalculosRoute
+  '/calc/$id': typeof CalcIdRoute
+  '/horarios/clases': typeof HorariosClasesRoute
+  '/horarios/equipos': typeof HorariosEquiposRoute
+  '/horarios': typeof HorariosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/calculos': typeof CalculosRoute
+  '/calc/$id': typeof CalcIdRoute
+  '/horarios/clases': typeof HorariosClasesRoute
+  '/horarios/equipos': typeof HorariosEquiposRoute
+  '/horarios/': typeof HorariosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/calculos'
+    | '/calc/$id'
+    | '/horarios/clases'
+    | '/horarios/equipos'
+    | '/horarios/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/calculos'
+    | '/calc/$id'
+    | '/horarios/clases'
+    | '/horarios/equipos'
+    | '/horarios'
+  id:
+    | '__root__'
+    | '/'
+    | '/calculos'
+    | '/calc/$id'
+    | '/horarios/clases'
+    | '/horarios/equipos'
+    | '/horarios/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CalculosRoute: typeof CalculosRoute
+  CalcIdRoute: typeof CalcIdRoute
+  HorariosClasesRoute: typeof HorariosClasesRoute
+  HorariosEquiposRoute: typeof HorariosEquiposRoute
+  HorariosIndexRoute: typeof HorariosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculos': {
+      id: '/calculos'
+      path: '/calculos'
+      fullPath: '/calculos'
+      preLoaderRoute: typeof CalculosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calc/$id': {
+      id: '/calc/$id'
+      path: '/calc/$id'
+      fullPath: '/calc/$id'
+      preLoaderRoute: typeof CalcIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/horarios/': {
+      id: '/horarios/'
+      path: '/horarios'
+      fullPath: '/horarios/'
+      preLoaderRoute: typeof HorariosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/horarios/clases': {
+      id: '/horarios/clases'
+      path: '/horarios/clases'
+      fullPath: '/horarios/clases'
+      preLoaderRoute: typeof HorariosClasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/horarios/equipos': {
+      id: '/horarios/equipos'
+      path: '/horarios/equipos'
+      fullPath: '/horarios/equipos'
+      preLoaderRoute: typeof HorariosEquiposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CalculosRoute: CalculosRoute,
+  CalcIdRoute: CalcIdRoute,
+  HorariosClasesRoute: HorariosClasesRoute,
+  HorariosEquiposRoute: HorariosEquiposRoute,
+  HorariosIndexRoute: HorariosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
