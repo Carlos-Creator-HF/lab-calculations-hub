@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 
-const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
+const DAYS: string[] = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
 const HOURS: string[] = [];
 for (let h = 7; h <= 22; h++) {
   HOURS.push(`${h}:00`);
   if (h < 22) HOURS.push(`${h}:30`);
 }
 type Entry = { nombre: string; dia: string; inicio: string; fin: string };
-const toMin = (t: string) => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+const toMin = (t: string) => { const [h = 0, m = 0] = t.split(":").map(Number); return h * 60 + m; };
 
 export function Schedule({ storageKey, nameLabel }: { storageKey: string; nameLabel: string }) {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [nombre, setNombre] = useState("");
-  const [dia, setDia] = useState(DAYS[0]);
-  const [inicio, setInicio] = useState(HOURS[0]);
-  const [fin, setFin] = useState(HOURS[2]);
+  const [dia, setDia] = useState<string>(DAYS[0]!);
+  const [inicio, setInicio] = useState<string>(HOURS[0]!);
+  const [fin, setFin] = useState<string>(HOURS[2]!);
   const [msg, setMsg] = useState("");
 
   useEffect(() => {

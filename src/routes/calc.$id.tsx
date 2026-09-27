@@ -66,7 +66,7 @@ function CalcPage() {
   const atmMissing = calc.needsAtm && num(patm) === null;
   const fit = atmMissing ? null : linearFit(pts);
   const sorted = [...pts].sort((a, b) => a.x - b.x);
-  const fitLine = fit && sorted.length ? [sorted[0], sorted[sorted.length - 1]].map((q) => ({ x: q.x, fit: fit.m * q.x + fit.b })) : [];
+  const fitLine = fit && sorted.length ? [sorted[0]!, sorted[sorted.length - 1]!].map((q) => ({ x: q.x, fit: fit.m * q.x + fit.b })) : [];
 
   const setRow = (i: number, k: keyof Row, v: string) => {
     setRows((r) => r.map((row, j) => (j === i ? { ...row, [k]: v } : row)));
