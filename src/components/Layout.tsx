@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import ccBadge from "@/assets/cc-by-nc-badge.png";
 
 export function Footer() {
   return (
@@ -7,6 +8,15 @@ export function Footer() {
       <p className="max-w-xl">
         This project was founded by PAPIT-UNAM, PAPIME-UNAM and SECIHTI. We thank DGAPA for postdoctoral fellowship.
       </p>
+      <a
+        href="https://creativecommons.org/licenses/by-nc/4.0/"
+        target="_blank"
+        rel="noreferrer"
+        className="transition-opacity hover:opacity-70"
+        aria-label="Creative Commons CC BY-NC 4.0 license"
+      >
+        <img src={ccBadge} alt="CC BY-NC 4.0" width={1536} height={512} loading="lazy" className="h-7 w-auto" />
+      </a>
       <p className="max-w-xl">
         This work is licensed under{" "}
         <a
